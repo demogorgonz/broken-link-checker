@@ -15,7 +15,7 @@ ___
 1. Mount local files to webserver and run tests:
 
 ```bash
-docker run -d --name broken-link-checker -v $(pwd)/site:/var/www/localhost/htdocs/site filips92/broken-link-checker:latest
+docker run -d --name broken-link-checker -v $(pwd)/site:/var/www/localhost/htdocs/site filips92/broken-link-checker
 docker exec -ti broken-link-checker /bin/bash -c 'set -o pipefail; blc -eor http://localhost/site';echo "Container exit code (broken control DEBUG): $?" | grep -v "0 broken" | grep --color=auto -B 5 -A 5 broken
 docker rm -f broken-link-checker
  ```
@@ -24,7 +24,7 @@ docker rm -f broken-link-checker
 2. Start container which you can query multiple times to check multiple sources
 
 ```bash
-docker run -d --name broken-link-checker -v $(pwd)/site:/var/www/localhost/htdocs/site filips92/broken-link-checker:latest
+docker run -d --name broken-link-checker -v $(pwd)/site:/var/www/localhost/htdocs/site filips92/broken-link-checker
 
 docker exec -ti broken-link-checker /bin/bash -c 'set -o pipefail; blc -eor http://somewebsite.tld';echo "Container exit code (broken control DEBUG): $?" | grep -v "0 broken" | grep --color=auto -B 5 -A 5 broken
 ```
